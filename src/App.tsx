@@ -41,31 +41,38 @@ function App() {
     }
   };
 
-  return (
-    <div style={{ padding: '20px', fontFamily: 'sans-serif', textAlign: 'center' }}>
-      <h1>El Clima Actual</h1>
+return (
+    // Agregamos un fondo sutil a toda la pantalla y centramos todo
+    <div className="min-h-screen bg-slate-50 flex flex-col items-center py-12 font-sans">
       
-      <div style={{ marginBottom: '20px' }}>
+      <h1 className="text-4xl font-extrabold text-slate-800 mb-8 tracking-tight animate-pulse">
+        El Clima Actual ⛅
+      </h1>
+      
+      {/* El Buscador (Input y Botón) */}
+      <div className="mb-10 flex gap-3">
         <input 
           type="text" 
           value={busqueda}
           onChange={(e) => setBusqueda(e.target.value)}
           placeholder="Ej: Madrid,es"
-          style={{ padding: '10px', fontSize: '16px', borderRadius: '5px', border: '1px solid #ccc' }}
+          className="px-4 py-2 text-lg border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 w-64 shadow-sm transition-all"
         />
         <button 
           onClick={manejarBusqueda}
-          style={{ padding: '10px 20px', fontSize: '16px', marginLeft: '10px', cursor: 'pointer', backgroundColor: '#007bff', color: 'white', border: 'none', borderRadius: '5px' }}
+          className="px-6 py-2 text-lg text-white bg-blue-600 rounded-xl hover:bg-blue-700 transition-colors shadow-md font-semibold cursor-pointer"
         >
           Buscar
         </button>
       </div>
       
-      {/* ACÁ ESTÁ LA MAGIA DEL REFACTOR */}
+      {/* Renderizado de la tarjeta o mensaje de carga */}
       {clima ? (
         <ClimaCard data={clima} />
       ) : (
-        <p>Buscando en el radar meteorológico...</p>
+        <p className="text-slate-500 font-medium animate-pulse">
+          Buscando en el radar meteorológico...
+        </p>
       )}
     </div>
   );
